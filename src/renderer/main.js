@@ -1,64 +1,60 @@
-/* 入口启动文件 */
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { ConfigProvider } from 'antd'
 import {
   HashRouter as Router,
   Route,
   Link,
-  withRouter
+  Switch,
 } from 'react-router-dom'
 
-function ParamIdDemo (props) {
-  console.log(props.match.params) // params: {id: "123"}
-  return <div>Page1</div>
+function Home () {
+  return <h2>Home</h2>
 }
 
-function Page2 (props) {
-  console.log(props.location.param) // param: {id: 123}
-  return <div>Page2</div>
-}
-function Page3 (props) {
-  console.log(props) // param: {id: 123}
-  return <div>page3</div>
+function About () {
+  return <h2>About</h2>
 }
 
-function BusiPage (props) {
-  const { history } = props
-  return (
-    <button
-      onClick={() => {
-        history.push({ pathname: '/page3', param: { id: 123 } })
-      }}
-    >
-      Jump Page3
-    </button>
-  )
+function Users () {
+  return <h2>Users</h2>
 }
-
-const BusiPageRouter = withRouter(BusiPage)
 
 // ================================
 // 将根组件挂载到 DOM，启动！
 // ================================
 function loadIndex () {
   ReactDOM.render(
-    <ConfigProvider>
-      <Router>
-        <div>
-          <Route exact path="/page1/:id" component={ParamIdDemo} />
-          <Route exact path="/page2" component={Page2} />
-          <Route exact path="/page3" component={Page3} />
-          <Link to="/page1/123">Link Id</Link>
-          <br />
-          <Link to={{ pathname: '/page2', param: { id: 123 } }}>
-            Link Param
-          </Link>
-          <br />
-          <BusiPageRouter />
-        </div>
-      </Router>
-    </ConfigProvider>,
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* A <Switch> looks through its children <Route>s and
+          renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>,
     document.getElementById('app')
   )
 }
