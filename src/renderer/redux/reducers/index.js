@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 import store from '@/redux/store'
-import userReducer from '@/redux/reducers/user'
+import counterReducer from '@/redux/reducers/counter'
 // ================================
 // 同步的 Reducers（即应用初始化所必需的）
 // ================================
 const syncReducers = {
-  userData: userReducer,
+  counter: counterReducer,
 }
 
 // ================================
