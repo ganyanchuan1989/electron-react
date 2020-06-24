@@ -9,4 +9,4 @@
 
 # 计算器效果图
 
-![](./docs/imgs/counter-demo.png)
+![](./docs/imgs/counter.png)
