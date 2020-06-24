@@ -15,7 +15,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
  * List of node_modules to include in webpack bundle
  *
  * Required for specific packages like Vue UI libraries
- * that provide pure *.vue files that need compiling
+ * that provide pure *.js files that need compiling
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/webpack-configurations.html#white-listing-externals
  */
 let whiteListedModules = ['react', 'react-dom']
@@ -54,7 +54,7 @@ let rendererConfig = {
 								"[name]-[path]_[local]_[hash:base64:5]"
 						}
 					},
-					{ loader: "postcss-loader" }, // 注意顺序，这个要在less-loader 之前
+					// { loader: "postcss-loader" }, // 注意顺序，这个要在less-loader 之前
 					{ loader: "less-loader" }
 				]
 			},

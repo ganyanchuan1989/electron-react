@@ -2,15 +2,44 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>electron-react</title>
+    <title>JUMP-Electron</title>
+    <!-- <link rel="stylesheet" href="static/antd.min.css"> -->
+    <!-- <script src="static/antd.min.js"></script>
+    <script src="static/antd-with-locales.min.js"></script> -->
     <% if (htmlWebpackPlugin.options.nodeModules) { %>
       <!-- Add `node_modules/` to global paths so `require` works properly in development -->
       <script>
-        require('module').globalPaths.push('<%= htmlWebpackPlugin.options.nodeModules.replace(/\\/g, '\\\\') %>')
+        require('module').globalPaths.push('<%= htmlWebpackPlugin.options.nodeModules.replace(/\\/g, "\\\\") %>')
       </script>
     <% } %>
+    <script type="text/javascript">
+      function onload() {
+          document.body.style.height = window.innerHeight + "px";
+          document.body.style.margin = "0";
+      }
+
+      function onresize() {
+          onload();
+      }
+      var _this = this;
+      window.addEventListener('message', function (e) {
+          e.data.origin = e.origin;
+          if (typeof e.data === 'string') {
+              if (e.data == 'onClickModule') {
+                  window.eventPool.fireEvent({ type: 'resetView' });
+              }
+          } else {
+              if (e.data && e.data.type && e.data.type === 'closeModule') {
+                  const moduleId = e.data.moduleId;
+                  window.eventPool.fireEvent({ type: 'closeModuleEvent', moduleId: moduleId });
+              } else {
+                  window[e.data.method] && window[e.data.method](e.data);
+              }
+          }
+      }, false);
+  </script>
   </head>
-  <body>
+  <body onload="onload()" onresize="onresize()" style="overflow: hidden; background-color: #E0EAF4;">
     <div id="app"></div>
     <!-- Set `__static` path to static files in production -->
     <% if (!process.browser) { %>
@@ -20,5 +49,9 @@
     <% } %>
 
     <!-- webpack builds are automatically injected -->
+    <noscript>
+      <strong>We're sorry but guip-vue doesn't work properly without JavaScript enabled. Please enable it to
+          continue.</strong>
+  </noscript>
   </body>
 </html>
