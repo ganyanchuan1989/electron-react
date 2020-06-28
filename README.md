@@ -20,6 +20,20 @@
 - ErrorBoundary: React 错误边界
 - antd: UI组件库
 
+
+# 使用
+
+```js
+// 采用mock方式启动dev
+npm run dev:mock 
+
+// 非mock方式
+npm run dev
+
+// 构建
+npm run build
+```
+
 # 示例
 
 - Counter示例：一个完整的redux示例，会在console中记录每次状态更新日志。

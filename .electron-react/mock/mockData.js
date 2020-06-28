@@ -1,5 +1,6 @@
 const loginData = {
-  name:'ganxz'
+  status: 'ok',
+  name:'ganxz',
 };
 
 // console.log(JSON.stringify(userLoginData));

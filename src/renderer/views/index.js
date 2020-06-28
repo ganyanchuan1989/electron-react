@@ -57,6 +57,7 @@ export default function WelCome () {
                 <Link to="/counter">Counter</Link>
               </li>
               <li><Link to="/plugin">plugin</Link></li>
+              <li><Link to="/request">request</Link></li>
             </ul>
           </Col>
         </Row>
