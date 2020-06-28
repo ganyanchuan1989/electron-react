@@ -12,6 +12,9 @@ const webpackHotMiddleware = require('webpack-hot-middleware')
 const mainConfig = require('./webpack.main.config')
 const rendererConfig = require('./webpack.renderer.config')
 
+const proxyMap = require('./proxy.config')
+const reqMock = require('./mock/mockRequest')
+
 let electronProcess = null
 let manualRestart = false
 let hotMiddleware
@@ -59,6 +62,7 @@ function startRenderer () {
       logStats('Renderer', stats)
     })
 
+    const isMock = process.env.MOCK === 'true'
     const server = new WebpackDevServer(
       compiler,
       {
@@ -66,10 +70,12 @@ function startRenderer () {
         quiet: true,
         before (app, ctx) {
           app.use(hotMiddleware)
+          isMock && reqMock(app) // mock请求
           ctx.middleware.waitUntilValid(() => {
             resolve()
           })
-        }
+        },
+        proxy: isMock ? {} : proxyMap // 请求代理（非Mock请求）
       }
     )
 

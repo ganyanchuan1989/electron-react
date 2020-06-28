@@ -1,0 +1,5 @@
+{
+  "AppServer": "http://localhost:9090/api/",
+  "WebServer": "http://localhost/",
+  "logLevel":"debug"
+}

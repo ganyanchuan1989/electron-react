@@ -9,7 +9,8 @@
     "build": "node .electron-react/build.js && electron-builder",
     "build:dir": "node .electron-react/build.js && electron-builder --dir",
     "build:clean": "cross-env BUILD_TARGET=clean node .electron-react/build.js",
-    "dev": "node .electron-react/dev-runner.js",
+    "dev": "cross-env NODE_ENV=develompent node .electron-react/dev-runner.js",
+    "dev:mock": "cross-env NODE_ENV=develompent MOCK=true node .electron-react/dev-runner.js",
     "e2e": "npm run pack && mocha test/e2e",
     "lint": "eslint --ext .js,.jsx -f ./node_modules/eslint-friendly-formatter src test",
     "lint:fix": "eslint --ext .js,.jsx -f ./node_modules/eslint-friendly-formatter --fix src test",
@@ -57,12 +58,16 @@
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
+    "electron-updater": "^4.3.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "4.4.8",
     "react-router-dom": "^5.2.0",
     "redux": "3.7.2",
-    "redux-thunk": "2.1.0"
+    "redux-thunk": "2.1.0",
+    "sequelize": "^6.2.2",
+    "sqlite3": "^4.2.0",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "ajv": "^6.5.0",
@@ -80,7 +85,7 @@
     "chai": "^4.1.2",
     "chalk": "^2.4.1",
     "copy-webpack-plugin": "^4.5.1",
-    "cross-env": "^5.1.6",
+    "cross-env": "^5.2.1",
     "css-loader": "^0.28.11",
     "del": "^3.0.0",
     "devtron": "^1.4.0",
