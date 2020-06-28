@@ -58,25 +58,6 @@ let rendererConfig = {
 					{ loader: "less-loader" }
 				]
 			},
-			{
-				test: /\.less$/,
-				include: [/node_modules/],
-				use: [
-					{ loader: "style-loader" },
-					{
-						loader: "css-loader",
-						options: {
-							importLoaders: 1
-							// modules: true,
-							// localIndexName:"[name]__[local]___[hash:base64:5]"
-						}
-					},
-					{
-						loader: "less-loader",
-						options: { javascriptEnabled: true } // modifyVars: antdTheme
-					}
-				]
-			},
       {
 				test: /\.css$/,
 				use: [{ loader: "style-loader" }, { loader: "css-loader" }]
