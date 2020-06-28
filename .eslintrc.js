@@ -29,7 +29,6 @@ module.exports = {
     'react/jsx-uses-vars': 2,
     'comma-dangle': ['error', 'always-multiline'],
     'standard/no-callback-literal': 0,
-    'import/first':0,
 
   },
 }

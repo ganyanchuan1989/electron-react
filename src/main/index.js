@@ -9,18 +9,19 @@ import {
   crashReporter,
 } from 'electron'
 
+import './app-global'
+import { cfgObj } from './cfg'
+import logger from './logger'
+import './db/index'
+
 // 修复 dev 模式版本号从Electron读取问题
 import { version } from '../../package.json'
 if (process.env.NODE_ENV === 'development') {
   app.getVersion = () => version
 }
-
+// eslint-disable-next-line import/first
 import { autoUpdater } from 'electron-updater'
 
-import './db/index'
-import './app-global'
-import { cfgObj } from './cfg'
-import logger from './logger'
 autoUpdater.logger = logger // 接管更新日志
 
 logger.debug(`start main ${JSON.stringify(cfgObj)}`)
