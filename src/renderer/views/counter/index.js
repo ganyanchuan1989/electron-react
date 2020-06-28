@@ -1,23 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { increase, decrease } from '@/redux/actions/counter'
+import { HomeOutlined } from '@ant-design/icons'
+import {Link} from 'react-router-dom'
 
 import styles from './index.less'
 function Counter ({ counter, increase, decrease }) {
   const { count } = counter
   return (
     <div className={styles.Container}>
-      <div className={styles.LogoContainer}>
-        <img src={require('@/assets/img/electron.png')} />
-        <span>Electron-React</span>
-      </div>
-      <div className={styles.Counter}>
+      <div className={styles.TitleContainer}>
+        <Link to="/"><HomeOutlined className={styles.HomeIcon} /></Link>
         <h1>Counter</h1>
-        <p>{count}</p>
-        <div className={styles.Btns}>
-          <span onClick={() => { increase() }}>+</span>
-          <span onClick={() => { decrease() }}>-</span>
-        </div>
+      </div>
+      <p>{count}</p>
+      <div className={styles.Btns}>
+        <span onClick={() => { increase() }}>+</span>
+        <span onClick={() => { decrease() }}>-</span>
       </div>
     </div>
   )

@@ -9,6 +9,14 @@ export const getRouteData = () => {
       module: lazyLoad(() => import('@/views')),
       layout: BasicLayout,
     },
+    '/counter': {
+      module: lazyLoad(() => import('@/views/counter')),
+      layout: BasicLayout,
+    },
+    '/plugin': {
+      module: lazyLoad(() => import('@/views/plugin')),
+      layout: BasicLayout,
+    },
     // 强制“刷新”页面的 hack
     '/redirect': { module: lazyLoad(() => import('@/components/Redirect')) },
     // 无路由匹配的情况一定要放到最后，否则会拦截所有路由

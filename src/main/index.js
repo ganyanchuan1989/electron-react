@@ -13,6 +13,7 @@ import './app-global'
 import { cfgObj } from './cfg'
 import logger from './logger'
 import './db/index'
+import './plugins/index'
 
 // 修复 dev 模式版本号从Electron读取问题
 import { version } from '../../package.json'
