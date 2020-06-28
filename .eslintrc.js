@@ -17,7 +17,7 @@ module.exports = {
   globals: {
     __static: true,
   },
-  plugins: ['html', 'react'],
+  plugins: ['react'],
   rules: {
     // allow paren-less arrow functions
     'arrow-parens': 0,
